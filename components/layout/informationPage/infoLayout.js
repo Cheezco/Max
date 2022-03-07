@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
-import styles from "../../../styles/layout/main/layout.module.css";
-import Sidebar from "./sidebar";
-import Footer from "./footer";
+import styles from "../../../styles/layout/informationPage/layoutInfo.module.css";
+import Footer from "../main/footer";
+import Sidebar from "../main/sidebar";
 
 export default function Layout({ children }) {
   return (
