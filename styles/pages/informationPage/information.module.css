@@ -1,0 +1,22 @@
+.container {
+    color: black;
+    display: flexbox;
+    border-radius: 25px;
+    border: 1px solid grey;
+    padding: 20px; 
+    width: 83%;
+    height: 86.5%;
+    position: absolute;
+    left: 16%;
+    top: 0.1%;
+
+  }
+.contacts1 {
+    font-size: 40px;
+}
+.contacts2 {
+    font-size: 20px;
+    
+}
+  
+  
