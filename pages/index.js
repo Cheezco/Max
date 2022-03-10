@@ -5,7 +5,7 @@ import styles from "../styles/pages/home/home.module.css";
 export default function Home() {
   return (
     <Layout>
-      <Box className={styles.container}>Home</Box>
+      <Box className={styles.container}>Home test</Box>
     </Layout>
   );
 }
