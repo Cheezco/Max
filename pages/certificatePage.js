@@ -1,11 +1,127 @@
 import Layout from "../components/layout/main/Layout";
-import { Box } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import styles from "../styles/pages/certificatePage/certificate.module.css";
 
-export default function Certificate() {
+import * as React from "react";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+
+const columns = [
+  { id: "certificate_Name", label: "Certificate_Name", minWidth: 170 },
+  { id: "issue_date", label: "Issue_Date", minWidth: 100 },
+];
+
+function createData(certificate_Name, issue_date) {
+  return { certificate_Name, issue_date };
+}
+
+const rows = [
+  createData("Nedarbingumo pažymėjimas", "2022-02-02"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-02"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-04"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-05"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-1"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-2"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-1"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-3"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-5"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-6"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-15"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-9"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-6"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-3"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-25"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-22"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-24"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-5"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-1"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-2"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-02"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-02"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-02"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-02"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-02"),
+  createData("Nedarbingumo pažymėjimas", "2022-02-02"),
+  createData("China", "CN", 1403500365, 9596961),
+  createData("Italy", "IT", 60483973, 301340),
+];
+
+export default function certificatePage() {
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
   return (
     <Layout>
-      <Box className={styles.colors}>Pažymų puslapis</Box>
+      <Box className={styles.colors}>
+        <h1>Pažymos</h1>
+        <p>
+          Šiame puslapyje pateikiama informacija apie visas klientui
+          priklausančias pažymas
+        </p>
+      </Box>
+      <Box className={styles.table_center}>
+        <Paper sx={{ width: "70%" }}>
+          <TableContainer sx={{ maxHeight: 440 }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Pavadinimas</TableCell>
+                  <TableCell>Data</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => {
+                    return (
+                      <TableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={row.code}
+                      >
+                        {columns.map((column) => {
+                          const value = row[column.id];
+                          return (
+                            <TableCell key={column.id} align={column.align}>
+                              {column.format && typeof value === "number"
+                                ? column.format(value)
+                                : value}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+            labelRowsPerPage={"Eilučių skaičius:"}
+          />
+        </Paper>
+      </Box>
     </Layout>
   );
 }
