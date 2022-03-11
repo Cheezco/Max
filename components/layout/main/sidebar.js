@@ -84,7 +84,7 @@ function Links({ handleLinkClick }) {
 
 function CustomLink({ handleLinkClick, href, text }) {
   return (
-    <Button onClick={handleLinkClick}>
+    <Button onClick={() => handleLinkClick(href)}>
       <Typography variant='button'>{text}</Typography>
     </Button>
   );

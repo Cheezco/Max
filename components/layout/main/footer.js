@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <Paper variant='outlined' elevation={10} className={styles.container}>
+    <Paper variant='outlined' className={styles.container}>
       <Box gap={2} className={styles.logoContainer}>
         <Logo src='/images/default/logoPlaceholder.png' />
         <Logo src='/images/default/logoPlaceholder.png' />
