@@ -2,16 +2,61 @@
 import Layout from "../components/layout/main/Layout";
 import { Box, Divider } from "@mui/material";
 import styles from "../styles/pages/informationPage/information.module.css";
+import { styled } from "@mui/system";
 
 export default function Information() {
   return (
     <Layout>
-      <Divider />
+      <div className={styles.padding}>
       <Box className={styles.container}> <p className={styles.contacts1}>Kontaktai</p>
-      <p className={styles.contacts2}>Mindaugas Žiukas - </p>
-      <p className={styles.contacts2}>Matas Grigonis - </p>
-      <p className={styles.contacts2}>Augustas Druceika - </p></Box>
-      <Divider />
+      <p className={styles.contacts2}>Mindaugas Žiukas - mindaugas.ziukas@ktu.edu</p>
+      <p className={styles.contacts2}>Matas Grigonis - matas.grigonis@ktu.edu</p>
+      <p className={styles.contacts2}>Augustas Druceika - augustas.druceika@ktu.edu</p>
+      <p className={styles.contacts2}>Telefonas - 864269842114564654654654654 </p>
+      <p className={styles.contacts2}>Elektroninis paštas - maxSveikata@max.lt (neveikiantis)</p>
+      <p className={styles.contacts2}>Darbo laikas:</p>
+      <Root>
+        <table>
+          <tr>
+            <th >Diena</th>
+            <th>Laikas</th>
+        </tr>
+        <tr >
+          <td>Pirmadienis</td>
+          <td>9:00 - 12:00</td>
+        </tr>
+        <tr >
+          <td>Antradienis</td>
+          <td>9:00 - 12:00</td>
+        </tr>
+        <tr >
+          <td>Trečiadienis</td>
+          <td>9:00 - 12:00</td>
+        </tr>
+        <tr >
+          <td>Ketvirtadienis</td>
+          <td>9:00 - 12:00</td>
+        </tr>
+        
+      </table>
+      </Root>
+      </Box>
+        </div>      
     </Layout>
   );
 }
+
+const Root = styled("div")`
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 20%;
+  }
+
+  td,
+  th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+  }
+`;

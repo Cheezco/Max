@@ -5,21 +5,32 @@
     border: 1px solid grey;
     padding: 20px; 
     width: 100%;
-    height: 96%;
-    top: 0.1%;
-    min-width: 800px;
-    max-width: 1080px;
+    height: 95%;
+    min-width: 900px;
+    max-width: 1900px;
     
   }
   .padding {
-    padding: 20px; 
+    padding: 10px; 
+    border: 1px white;
+    display: flexbox;
+    width: 105%;
+    height: 103%;
   }
 .contacts1 {
     font-size: 40px;
 }
 .contacts2 {
     font-size: 20px;
-    
 }
-  
+.tableStyle1 {
+    border-collapse: collapse;
+    width: 30%;
+}
+.tableStyle2 {
+    border: 1px solid black;
+    border-collapse: collapse;
+
+}
+ 
   
