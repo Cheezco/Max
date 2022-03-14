@@ -12,6 +12,9 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 
+import { styled } from "@mui/system";
+import TablePaginationUnstyled from "@mui/base/TablePaginationUnstyled";
+
 const columns = [
   { id: "certificate_Name", label: "Certificate_Name", minWidth: 170 },
   { id: "issue_date", label: "Issue_Date", minWidth: 100 },
@@ -48,8 +51,6 @@ const rows = [
   createData("Nedarbingumo pažymėjimas", "2022-02-02"),
   createData("Nedarbingumo pažymėjimas", "2022-02-02"),
   createData("Nedarbingumo pažymėjimas", "2022-02-02"),
-  createData("China", "CN", 1403500365, 9596961),
-  createData("Italy", "IT", 60483973, 301340),
 ];
 
 export default function certificatePage() {
@@ -80,7 +81,7 @@ export default function certificatePage() {
               <TableHead>
                 <TableRow>
                   <TableCell>Pavadinimas</TableCell>
-                  <TableCell>Data</TableCell>
+                  <TableCell>Išdavimo data</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
