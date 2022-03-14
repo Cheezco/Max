@@ -45,16 +45,10 @@ function UserInformation() {
       <Box className={styles.userInformation}>
         <Typography>Vardas Pavardė</Typography>
         <Typography variant='caption'>Gydytojas: Vardas Pavardė</Typography>
-        {/* <Button variant='outlined'>
-          <Typography variant='button'>Informacija</Typography>
-        </Button>
-        <Button variant='outlined'>
-          <Typography variant='button'>Atsijungti</Typography>
-        </Button> */}
         <Box>
-          <IconButton>
-            <More color='info' />
-          </IconButton>
+          <Button variant='outlined'>
+            <Typography variant='button'>Informacija</Typography>
+          </Button>
           <IconButton>
             <Logout color='error' />
           </IconButton>
