@@ -27,13 +27,18 @@
 }
 .contacts3 {
     font-size: 1em;
-    word-wrap:break-word;
-    width: 99%;
     text-align: justify;
+    text-overflow: clip;
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 .tableStyle1 {
     border-collapse: collapse;
     width: 30%;
+}
+.tableStyle2 {
+    border-collapse: collapse;
+    width: 100%;
 }
 .olStyle{
     display: list-item;
@@ -43,10 +48,18 @@
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 40px;
+    text-align: justify;
+    text-overflow: clip;
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 .liStyle{
     display: list-item;
     text-align: -webkit-match-parent;
+    text-align: justify;
+    text-overflow: clip;
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 .tableStyle2 {
     border: 1px solid black;
