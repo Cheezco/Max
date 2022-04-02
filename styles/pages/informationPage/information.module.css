@@ -5,66 +5,30 @@
     border: 0.01em solid grey;
     padding: 1%; 
     width: 95%;
-    height: auto;
+    height: 95%;
     min-height: 640px;
     min-width: 1000px;
     max-width: 1900px;
 
   }
-  .padding {
+.padding {
     padding: 1%; 
     border: 1px white;
     display: flexbox;
     width: 105%;
     height: 103%;
   }
-.contacts1 {
+.contactsBigText {
     font-size: 3em;
 }
-.contacts2 {
+.contactsSmallText {
     font-size: 1em;
     text-align: justify;
-}
-.contacts3 {
-    font-size: 1em;
-    text-align: justify;
-    text-overflow: clip;
-    white-space: pre-wrap;
-    word-break: break-word;
 }
 .tableStyle1 {
     border-collapse: collapse;
     width: 30%;
 }
-.tableStyle2 {
-    border-collapse: collapse;
-    width: 100%;
-}
-.olStyle{
-    display: list-item;
-    list-style-position: inside;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-    text-align: justify;
-    text-overflow: clip;
-    white-space: pre-wrap;
-    word-break: break-word;
-}
-.liStyle{
-    display: list-item;
-    text-align: -webkit-match-parent;
-    text-align: justify;
-    text-overflow: clip;
-    white-space: pre-wrap;
-    word-break: break-word;
-}
-.tableStyle2 {
-    border: 1px solid black;
-    border-collapse: collapse;
 
-}
- 
+
   

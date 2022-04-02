@@ -1,0 +1,56 @@
+.container {
+    color: black;
+    display: flexbox;
+    border-radius: 1em;
+    border: 0.01em solid grey;
+    padding: 1%; 
+    width: 95%;
+    height: auto;
+    min-height: 640px;
+    min-width: 1000px;
+    max-width: 1900px;
+
+  }
+.olStyle{
+    display: list-item;
+    list-style-position: inside;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    text-align: justify;
+    text-overflow: clip;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+.liStyle{
+    display: list-item;
+    text-align: -webkit-match-parent;
+    text-align: justify;
+    text-overflow: clip;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+.simpleTableStyle {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+}
+.padding {
+    padding: 1%; 
+    border: 1px white;
+    display: flexbox;
+    width: 105%;
+    height: 103%;
+}
+.bigText {
+    font-size: 3em;
+}
+.textStyleWithWordBreak {
+    font-size: 1em;
+    text-align: justify;
+    text-overflow: clip;
+    white-space: pre-wrap;
+    word-break: break-word;
+}

@@ -8,13 +8,14 @@ export default function Information() {
   return (
     <Layout>
       <div className={styles.padding}>
-      <Box className={styles.container}> <p className={styles.contacts1}>Kontaktai</p>
-      <p className={styles.contacts2}>Mindaugas Žiukas - mindaugas.ziukas@ktu.edu</p>
-      <p className={styles.contacts2}>Matas Grigonis - matas.grigonis@ktu.edu</p>
-      <p className={styles.contacts2}>Augustas Druceika - augustas.druceika@ktu.edu</p>
-      <p className={styles.contacts2}>Telefonas - 864269842114564654654654654 </p>
-      <p className={styles.contacts2}>Elektroninis paštas - maxSveikata@max.lt (neveikiantis)</p>
-      <p className={styles.contacts2}>Darbo laikas:</p>
+      <Box className={styles.container}> 
+        <p className={styles.contactsBigText}>Kontaktai</p>
+        <p className={styles.contactsSmallText}>Mindaugas Žiukas - mindaugas.ziukas@ktu.edu</p>
+        <p className={styles.contactsSmallText}>Matas Grigonis - matas.grigonis@ktu.edu</p>
+        <p className={styles.contactsSmallText}>Augustas Druceika - augustas.druceika@ktu.edu</p>
+        <p className={styles.contactsSmallText}>Telefonas - 864269842114564654654654654 </p>
+        <p className={styles.contactsSmallText}>Elektroninis paštas - maxSveikata@max.lt (neveikiantis)</p>
+        <p className={styles.contactsSmallText}>Darbo laikas:</p>
       <Root>
         <table>
           <tr>
