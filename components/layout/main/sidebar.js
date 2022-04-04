@@ -71,6 +71,8 @@ function Links() {
         <CustomLink href="/" text="Skiepų kalendorius" />
         <Divider />
         <CustomLink href="/" text="Pažymėjimai" />
+        <Divider />
+        <CustomLink href="/sendings" text="Siuntimai" />
       </Box>
     </Paper>
   );
