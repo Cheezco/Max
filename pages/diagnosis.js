@@ -1,16 +1,9 @@
 import Layout from "../components/layout/main/Layout";
-import { Box, TextField } from "@mui/material";
+import { Box, TextField ,Paper,Table,TableBody,TableCell,TableContainer,TableHead,TablePagination,TableRow} from "@mui/material";
 import styles from "../styles/pages/certificatePage/certificate.module.css";
 
 import * as React from "react";
-import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
-import TableRow from "@mui/material/TableRow";
+
 
 import { styled } from "@mui/system";
 import TablePaginationUnstyled from "@mui/base/TablePaginationUnstyled";
@@ -53,7 +46,7 @@ const rows = [
   createData("Diagnozė3", "2022-02-02"),
 ];
 
-export default function diagnosis() {
+export default function Diagnosis() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
