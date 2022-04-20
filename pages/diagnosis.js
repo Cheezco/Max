@@ -10,11 +10,11 @@ import TablePaginationUnstyled from "@mui/base/TablePaginationUnstyled";
 
 const columns = [
   { id: "diagnosis_Name", label: "diagnosis_Name", minWidth: 170 },
-  { id: "issue_date", label: "Issue_Date", minWidth: 100 },
+  { id: "issueDate", label: "issueDate", minWidth: 100 },
 ];
 
-function createData(diagnosis_Name, issue_date) {
-  return { diagnosis_Name, issue_date };
+function createData(diagnosis_Name, issueDate) {
+  return { diagnosis_Name, issueDate };
 }
 
 const rows = [
