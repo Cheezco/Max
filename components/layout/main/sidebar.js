@@ -14,7 +14,7 @@ import { Logout, More } from "@mui/icons-material";
 export default function Sidebar() {
   return (
     <Box className={styles.outerContainer}>
-      <Paper variant='outlined' className={styles.container}>
+      <Paper variant="outlined" className={styles.container}>
         <Avatar />
         <UserInformation />
         <br />
@@ -28,11 +28,11 @@ function Avatar() {
   return (
     <Box className={styles.imageContainer}>
       <Image
-        src='/images/default/avatarPlaceholder.png'
+        src="/images/default/avatarPlaceholder.png"
         quality={100}
         width={100}
         height={100}
-        alt='avatar'
+        alt="avatar"
         className={styles.avatar}
       />
     </Box>
@@ -41,16 +41,16 @@ function Avatar() {
 
 function UserInformation() {
   return (
-    <Paper variant='outlined'>
+    <Paper variant="outlined">
       <Box className={styles.userInformation}>
         <Typography>Vardas Pavardė</Typography>
-        <Typography variant='caption'>Gydytojas: Vardas Pavardė</Typography>
+        <Typography variant="caption">Gydytojas: Vardas Pavardė</Typography>
         <Box>
-          <Button variant='outlined'>
-            <Typography variant='button'>Informacija</Typography>
+          <Button variant="outlined">
+            <Typography variant="button">Informacija</Typography>
           </Button>
           <IconButton>
-            <Logout color='error' />
+            <Logout color="error" />
           </IconButton>
         </Box>
       </Box>
@@ -60,17 +60,19 @@ function UserInformation() {
 
 function Links() {
   return (
-    <Paper variant='outlined' className={styles.linkContainer}>
+    <Paper variant="outlined" className={styles.linkContainer}>
       <Box className={styles.linkInnerContainer}>
-        <CustomLink href='/' text='Pagrindinis' />
+        <CustomLink href="/" text="Pagrindinis" />
         <Divider />
-        <CustomLink href='/' text='Diagnozės' />
+        <CustomLink href="/diagnosis" text="Diagnozės" />
         <Divider />
-        <CustomLink href='/certificatePage' text='Pažymos' />
+        <CustomLink href="/certificatePage" text="Pažymos" />
         <Divider />
-        <CustomLink href='/' text='Skiepų kalendorius' />
+        <CustomLink href="/" text="Skiepų kalendorius" />
         <Divider />
-        <CustomLink href='/' text='Pažymėjimai' />
+        <CustomLink href="/" text="Pažymėjimai" />
+        <Divider />
+        <CustomLink href="/sendings" text="Siuntimai" />
       </Box>
     </Paper>
   );
@@ -85,7 +87,7 @@ function CustomLink({ href, text }) {
 
   return (
     <Button onClick={handleClick}>
-      <Typography variant='button'>{text}</Typography>
+      <Typography variant="button">{text}</Typography>
     </Button>
   );
 }

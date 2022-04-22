@@ -5,16 +5,16 @@ import { useRouter } from "next/router";
 
 export default function Footer() {
   return (
-    <Paper variant='outlined' className={styles.container}>
+    <Paper variant="outlined" className={styles.container}>
       <Box className={styles.logoContainer}>
-        <Logo src='/images/default/logoPlaceholder.png' alt='logo1' />
-        <Logo src='/images/default/logoPlaceholder.png' alt='logo2' />
-        <Logo src='/images/default/logoPlaceholder.png' alt='logo3' />
+        <Logo src="/images/default/logoPlaceholder.png" alt="logo1" />
+        <Logo src="/images/default/logoPlaceholder.png" alt="logo2" />
+        <Logo src="/images/default/logoPlaceholder.png" alt="logo3" />
       </Box>
       <Box className={styles.buttonContainer}>
-        <NavigationButton href='/' text='Privatumo politika' />
-        <NavigationButton href='/' text='Pagalba' />
-        <NavigationButton href='/' text='Kontaktai' />
+        <NavigationButton href="/privacy" text="Privatumo politika" />
+        <NavigationButton href="/" text="Pagalba" />
+        <NavigationButton href="/information" text="Kontaktai" />
       </Box>
     </Paper>
   );
@@ -37,7 +37,7 @@ function NavigationButton({ href, text }) {
 
   return (
     <Button onClick={handleClick}>
-      <Typography variant='button'>{text}</Typography>
+      <Typography variant="button">{text}</Typography>
     </Button>
   );
 }
