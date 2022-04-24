@@ -1,0 +1,11 @@
+.alignCenter {
+  text-align: center;
+}
+
+.certificate_center {
+  display: flex;
+  justify-content: center;
+}
+TableRow.pointer {
+  cursor: pointer;
+}

@@ -1,9 +1,20 @@
 import Layout from "../components/layout/main/Layout";
-import { Box, TextField ,Paper,Table,TableBody,TableCell,TableContainer,TableHead,TablePagination,TableRow} from "@mui/material";
+import { useRouter } from "next/router";
+import {
+  Box,
+  TextField,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+} from "@mui/material";
 import styles from "../styles/pages/certificatePage/certificate.module.css";
 
 import * as React from "react";
-
 
 import { styled } from "@mui/system";
 import TablePaginationUnstyled from "@mui/base/TablePaginationUnstyled";
@@ -49,7 +60,7 @@ const rows = [
 export default function Diagnosis() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
+  const router = useRouter();
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -83,10 +94,14 @@ export default function Diagnosis() {
                   .map((row) => {
                     return (
                       <TableRow
+                        className="pointer"
                         hover
                         role="checkbox"
                         tabIndex={-1}
                         key={row.code}
+                        onClick={() => {
+                          router.push("/particularDiagnosis");
+                        }}
                       >
                         {columns.map((column) => {
                           const value = row[column.id];

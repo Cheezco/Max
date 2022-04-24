@@ -1,11 +1,40 @@
 import Layout from "../components/layout/main/Layout";
-import { Box } from "@mui/material";
+import {
+  Box,
+  Typography,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+  InboxIcon,
+  DraftsIcon,
+} from "@mui/material";
 import styles from "../styles/pages/home/home.module.css";
 
 export default function Home() {
   return (
     <Layout>
-      <Box className={styles.container}>Home test</Box>
+      <Box className={styles.container}>
+        <Typography>
+          <h3>Šiame lange bus matoma informacija apie:</h3>
+          <List>
+            <ListItem>Registracija</ListItem>
+            <ListItem>Tyrimai</ListItem>
+            <ListItem>Siuntimai</ListItem>
+            <ListItem>Receptai</ListItem>
+            <ListItem>
+              <a
+                href="https://miro.com/app/board/uXjVOCnESr8=/"
+                target="_blank"
+              >
+                Nuoroda į wireframe
+              </a>
+            </ListItem>
+          </List>
+        </Typography>
+      </Box>
     </Layout>
   );
 }
