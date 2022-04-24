@@ -1,7 +1,7 @@
 import Layout from "../components/layout/main/Layout";
-import { Box, TextField } from "@mui/material";
+import { Box, TextField, Button, Typography } from "@mui/material";
 import styles from "../styles/pages/certificatePage/certificate.module.css";
-
+import { useRouter } from "next/router";
 import * as React from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -53,7 +53,7 @@ const rows = [
   createData("Nedarbingumo pažymėjimas", "2022-02-02"),
 ];
 
-export default function certificatePage() {
+export default function CertificatePage() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -123,6 +123,28 @@ export default function certificatePage() {
           />
         </Paper>
       </Box>
+
+      <Box className={styles.table_center}>
+        <p>Paspaudus ant pažymos turi išmesti tokią lentelę</p>
+        <CustomLink
+          href="/particularCertificatePage"
+          text="Išsami informacija"
+        />
+      </Box>
     </Layout>
+  );
+}
+
+function CustomLink({ href, text }) {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(href);
+  };
+
+  return (
+    <Button onClick={handleClick}>
+      <Typography variant="button">{text}</Typography>
+    </Button>
   );
 }
