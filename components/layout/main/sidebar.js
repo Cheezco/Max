@@ -5,6 +5,7 @@ import {
   IconButton,
   Paper,
   Typography,
+  Link,
 } from "@mui/material";
 import styles from "../../../styles/layout/main/sidebar.module.css";
 import Image from "next/image";
@@ -47,7 +48,9 @@ function UserInformation() {
         <Typography variant="caption">Gydytojas: Vardas Pavardė</Typography>
         <Box>
           <Button variant="outlined">
-            <Typography variant="button">Informacija</Typography>
+            <Link href="/personalInformation" underline="hover">
+              {"Informacija"}
+            </Link>
           </Button>
           <IconButton>
             <Logout color="error" />

@@ -1,4 +1,4 @@
-import * as React from "react"; // BE ŠITO NEVEIKIA KODAS
+import React from "react"; // BE ŠITO NEVEIKIA KODAS
 import Layout from "../components/layout/main/Layout";
 import {
   Box,
@@ -34,57 +34,50 @@ const card = (
           <TableBody>
             <TableRow>
               <TableCell>
-                <Typography>Pacientas</Typography>
+                <Typography>Vardas</Typography>
               </TableCell>
               <TableCell>
-                <Typography>Vardas Pavardė</Typography>
+                <Typography>--------------</Typography>
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell>
-                <Typography>Pažymos išdavimo data</Typography>
+                <Typography>Pavardę</Typography>
               </TableCell>
               <TableCell>
-                <Typography>0000-00-00</Typography>
+                <Typography>--------------</Typography>
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell>
-                <Typography>Pažyma galioja iki</Typography>
+                <Typography>Asmens kodas</Typography>
               </TableCell>
               <TableCell>
-                <Typography>0000-00-00</Typography>
+                <Typography>--------------</Typography>
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell>
-                <Typography>Išdavusio gydytojo vardas ir pavardė</Typography>
+                <Typography>Adresas</Typography>
               </TableCell>
               <TableCell>
-                <Typography>Vardas Pavardė</Typography>
+                <Typography>--------------</Typography>
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell>
-                <Typography>Pažymos tipas:</Typography>
+                <Typography>Ligoninė</Typography>
               </TableCell>
               <TableCell>
-                <Typography>Tipas iš nurodytų virų lentelės sąraše</Typography>
+                <Typography>--------------</Typography>
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Aprašymas</TableCell>
-              <TableCell style={{ width: "30%" }}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets
-                containing Lorem Ipsum passages, and more recently with desktop
-                publishing software like Aldus PageMaker including versions of
-                Lorem Ipsum.
+              <TableCell>
+                <Typography>Telefono numeris</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography>--------------</Typography>
               </TableCell>
             </TableRow>
           </TableBody>
@@ -98,27 +91,12 @@ export default function ParticularCertificatePage() {
   return (
     <Layout>
       <Typography>
-        <h2 className={styles.alignCenter}>Pažyma</h2>
+        <h2 className={styles.alignCenter}>ASMENS INFORMACIJA</h2>
       </Typography>
       <Box className={styles.certificate_center}>
         <Card sx={{ width: "70%" }} variant="outlined">
           {card}
         </Card>
-      </Box>
-      <Box>
-        <Typography>
-          Pažymėjimai gali būti šių tipų:
-          <ul>
-            <li>Nedarbingumo pažyma</li>
-            <li>Mirties liudijimas</li>
-            <li>Asmens privalomojo sveikatos tikrinimo kortelė</li>
-            <li>Vairuotojo sveikatos patikrinimo medicininė pažyma</li>
-            <li>Vaiko gimimo pažymėjimas</li>
-            <li>Privalomojo sveikatos patikrinimo medicininė pažyma</li>
-            <li>Asmens medicininė knygelė</li>
-            <li>Mokinio sveikatos pažymėjimas</li>
-          </ul>
-        </Typography>
       </Box>
     </Layout>
   );
