@@ -1,16 +1,25 @@
 import Layout from "../components/layout/main/Layout";
-import { Box, TextField, Button, Typography } from "@mui/material";
 import styles from "../styles/pages/certificatePage/certificate.module.css";
 import { useRouter } from "next/router";
-import * as React from "react";
+import React from "react";
 import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
-import TableRow from "@mui/material/TableRow";
+import {
+  Box,
+  TextField,
+  Typography,
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  stepButtonClasses,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+} from "@mui/material";
 
 import { styled } from "@mui/system";
 import TablePaginationUnstyled from "@mui/base/TablePaginationUnstyled";
