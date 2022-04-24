@@ -56,6 +56,7 @@ const rows = [
 export default function CertificatePage() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const router = useRouter();
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -94,6 +95,9 @@ export default function CertificatePage() {
                         role="checkbox"
                         tabIndex={-1}
                         key={row.code}
+                        onClick={() => {
+                          router.push("/particularCertificatePage");
+                        }}
                       >
                         {columns.map((column) => {
                           const value = row[column.id];
