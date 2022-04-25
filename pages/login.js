@@ -3,8 +3,9 @@ import { IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useRouter } from "next/router";
 import LoginForm from "../components/loginPage/loginForm";
+import { getCsrfToken } from "next-auth/react";
 
-export default function Login() {
+export default function Login({ csrfToken }) {
   const router = useRouter();
 
   return (
@@ -14,7 +15,15 @@ export default function Login() {
           <CloseIcon />
         </IconButton>
       </div>
-      <LoginForm />
+      <LoginForm csrfToken={csrfToken} />
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      csrfToken: await getCsrfToken(context),
+    },
+  };
 }
