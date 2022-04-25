@@ -41,7 +41,7 @@ const rows = [
   createData('Aprašymas', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummytext ever since the 1500s, when an unknown printer took a galleyof type and scrambled it to make a type specimen book. It hassurvived not only five centuries, but also the leap intoelectronic typesetting, remaining essentially unchanged. It waspopularised in the 1960s with the release of Letraset sheetscontaining Lorem Ipsum passages, and more recently with desktoppublishing software like Aldus PageMaker including versions ofLorem Ipsum.'),
 ];
 
-export default function CustomizedTables() {
+export default function ParticularVacine() {
   return (
     <Layout>
             <div className={styles.padding}>
