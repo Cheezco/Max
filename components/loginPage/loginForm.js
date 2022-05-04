@@ -2,7 +2,7 @@ import styles from "../../styles/pages/loginPage/loginForm.module.css";
 import { TextField, Button, Typography, Paper } from "@mui/material";
 import { useState } from "react";
 
-export default function LoginForm() {
+export default function LoginForm({ csrfToken }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,23 +15,30 @@ export default function LoginForm() {
   };
 
   return (
-    <div className={styles.formContainer}>
+    <form
+      className={styles.formContainer}
+      method="post"
+      action="/api/auth/callback/credentials"
+    >
+      <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
       <Paper elevation={3} className={styles.form}>
         <TextField
-          label='Prisijungimo vardas'
+          name="username"
+          label="Prisijungimo vardas"
           value={username}
           onChange={handleUsernameChange}
         />
         <TextField
-          label='Slaptažodis'
-          type='password'
+          name="password"
+          label="Slaptažodis"
+          type="password"
           value={password}
           onChange={handlePasswordChange}
         />
-        <Button variant='outlined'>
-          <Typography variant='button'>Prisijungti</Typography>
+        <Button variant="outlined" type="submit">
+          <Typography variant="button">Prisijungti</Typography>
         </Button>
       </Paper>
-    </div>
+    </form>
   );
 }
