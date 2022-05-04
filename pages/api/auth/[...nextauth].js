@@ -50,6 +50,7 @@ export default NextAuth({
           accessToken: user.token,
           username: user.username,
           userId: user.id,
+          role: "admin",
         };
       }
 
@@ -60,6 +61,7 @@ export default NextAuth({
       session.user.id = token.userId;
       session.user.accessToken = token.accessToken;
       session.user.username = token.username;
+      session.user.role = token.role;
       return session;
     },
   },

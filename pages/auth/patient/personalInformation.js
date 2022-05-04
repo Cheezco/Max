@@ -1,5 +1,5 @@
 import React from "react"; // BE ŠITO NEVEIKIA KODAS
-import Layout from "../components/layout/main/Layout";
+import Layout from "../../../components/layout/main/Layout";
 import {
   Box,
   TextField,
@@ -17,7 +17,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import styles from "../styles/pages/particularCertificate/particularCertificate.module.css";
+import styles from "../../../styles/pages/particularCertificate/particularCertificate.module.css";
 
 const bull = (
   <Box

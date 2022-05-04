@@ -10,8 +10,8 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import Layout from "../components/layout/main/layout";
-import styles from "../styles/pages/vacinationCalendarPage/vacinationCalendar.module.css";
+import Layout from "../../../components/layout/main/layout";
+import styles from "../../../styles/pages/vacinationCalendarPage/vacinationCalendar.module.css";
 
 const mockVacinations = [
   createData("vacination1", "2020-01-10"),
