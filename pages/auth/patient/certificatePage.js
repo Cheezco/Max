@@ -105,7 +105,9 @@ export default function CertificatePage() {
                         tabIndex={-1}
                         key={row.code}
                         onClick={() => {
-                          router.push("/particularCertificatePage");
+                          router.push(
+                            "/auth/patient/particularCertificatePage"
+                          );
                         }}
                       >
                         {columns.map((column) => {

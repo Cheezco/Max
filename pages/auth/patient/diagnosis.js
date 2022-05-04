@@ -100,7 +100,7 @@ export default function Diagnosis() {
                         tabIndex={-1}
                         key={row.code}
                         onClick={() => {
-                          router.push("/particularDiagnosis");
+                          router.push("/auth/patient/particularDiagnosis");
                         }}
                       >
                         {columns.map((column) => {
