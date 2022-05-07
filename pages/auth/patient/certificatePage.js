@@ -1,5 +1,5 @@
-import Layout from "../components/layout/main/Layout";
-import styles from "../styles/pages/certificatePage/certificate.module.css";
+import Layout from "../../../components/layout/main/Layout";
+import styles from "../../../styles/pages/certificatePage/certificate.module.css";
 import { useRouter } from "next/router";
 import React from "react";
 import Paper from "@mui/material/Paper";
@@ -105,7 +105,9 @@ export default function CertificatePage() {
                         tabIndex={-1}
                         key={row.code}
                         onClick={() => {
-                          router.push("/particularCertificatePage");
+                          router.push(
+                            "/auth/patient/particularCertificatePage"
+                          );
                         }}
                       >
                         {columns.map((column) => {

@@ -67,11 +67,14 @@ function Links() {
       <Box className={styles.linkInnerContainer}>
         <CustomLink href="/" text="Pagrindinis" />
         <Divider />
-        <CustomLink href="/diagnosis" text="Diagnozės" />
+        <CustomLink href="/auth/patient/diagnosis" text="Diagnozės" />
         <Divider />
-        <CustomLink href="/certificatePage" text="Pažymos" />
+        <CustomLink href="/auth/patient/certificatePage" text="Pažymos" />
         <Divider />
-        <CustomLink href="/" text="Skiepų kalendorius" />
+        <CustomLink
+          href="/auth/patient/vacinationCalendar"
+          text="Skiepų kalendorius"
+        />
         <Divider />
       </Box>
     </Paper>

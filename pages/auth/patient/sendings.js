@@ -1,66 +1,62 @@
-import Layout from "../components/layout/main/Layout";
-import { useRouter } from "next/router";
-import {
-  Box,
-  TextField,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
-} from "@mui/material";
-import styles from "../styles/pages/certificatePage/certificate.module.css";
+import Layout from "../../../components/layout/main/Layout";
+import { Box, TextField } from "@mui/material";
+import styles from "../../../styles/pages/certificatePage/certificate.module.css";
 
 import * as React from "react";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
 
 import { styled } from "@mui/system";
 import TablePaginationUnstyled from "@mui/base/TablePaginationUnstyled";
 
 const columns = [
-  { id: "diagnosis_Name", label: "diagnosis_Name", minWidth: 170 },
-  { id: "issueDate", label: "issueDate", minWidth: 100 },
+  { id: "sending_Name", label: "sending_Name", minWidth: 170 },
+  { id: "issue_date", label: "Issue_Date", minWidth: 100 },
 ];
 
-function createData(diagnosis_Name, issueDate) {
-  return { diagnosis_Name, issueDate };
+function createData(sending_Name, issue_date) {
+  return { sending_Name, issue_date };
 }
 
 const rows = [
-  createData("Diagnozė", "2022-02-02"),
-  createData("Diagnozė1", "2022-02-02"),
-  createData("Diagnozė2", "2022-02-04"),
-  createData("Diagnozė3", "2022-02-05"),
-  createData("Diagnozė1", "2022-02-1"),
-  createData("Diagnozė2", "2022-02-2"),
-  createData("Diagnozė3", "2022-02-1"),
-  createData("Diagnozė1", "2022-02-3"),
-  createData("Diagnozė23", "2022-02-5"),
-  createData("Diagnozė1", "2022-02-6"),
-  createData("Diagnozė2", "2022-02-15"),
-  createData("Diagnozė2", "2022-02-9"),
-  createData("Diagnozė2", "2022-02-6"),
-  createData("Diagnozė3", "2022-02-3"),
-  createData("Diagnozė3", "2022-02-25"),
-  createData("Diagnozė3", "2022-02-22"),
-  createData("Diagnozė3", "2022-02-24"),
-  createData("Diagnozė1", "2022-02-5"),
-  createData("Diagnozė2", "2022-02-1"),
-  createData("Diagnozė3", "2022-02-2"),
-  createData("Diagnozė1", "2022-02-02"),
-  createData("Diagnozė2", "2022-02-02"),
-  createData("Diagnozė3", "2022-02-02"),
-  createData("Diagnozė1", "2022-02-02"),
-  createData("Diagnozė2", "2022-02-02"),
-  createData("Diagnozė3", "2022-02-02"),
+  createData("Siuntimas", "2022-02-02"),
+  createData("Siuntimas1", "2022-02-02"),
+  createData("Siuntimas2", "2022-02-04"),
+  createData("Siuntimas3", "2022-02-05"),
+  createData("Siuntimas1", "2022-02-1"),
+  createData("Siuntimas2", "2022-02-2"),
+  createData("Siuntimas3", "2022-02-1"),
+  createData("Siuntimas1", "2022-02-3"),
+  createData("Siuntimas23", "2022-02-5"),
+  createData("Siuntimas1", "2022-02-6"),
+  createData("Siuntimas2", "2022-02-15"),
+  createData("Siuntimas2", "2022-02-9"),
+  createData("Siuntimas2", "2022-02-6"),
+  createData("Siuntimas3", "2022-02-3"),
+  createData("Siuntimas3", "2022-02-25"),
+  createData("Siuntimas3", "2022-02-22"),
+  createData("Siuntimas3", "2022-02-24"),
+  createData("Siuntimas1", "2022-02-5"),
+  createData("Siuntimas2", "2022-02-1"),
+  createData("Siuntimas3", "2022-02-2"),
+  createData("Siuntimas1", "2022-02-02"),
+  createData("Siuntimas2", "2022-02-02"),
+  createData("Siuntimas3", "2022-02-02"),
+  createData("Siuntimas1", "2022-02-02"),
+  createData("Siuntimas2", "2022-02-02"),
+  createData("Siuntimas3", "2022-02-02"),
 ];
 
-export default function Diagnosis() {
+export default function sending() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const router = useRouter();
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -72,10 +68,10 @@ export default function Diagnosis() {
   return (
     <Layout>
       <Box className={styles.colors}>
-        <h1>Diagnozės</h1>
+        <h1>Siuntimai</h1>
         <p>
-          Šiame puslapyje pateikiama informacija apie visas klientui
-          priklausančias diagnozes
+          Šiame puslapyje pateikiama informacija apie visus klientui
+          priklausančius siuntimus
         </p>
       </Box>
       <Box className={styles.table_center}>
@@ -94,14 +90,10 @@ export default function Diagnosis() {
                   .map((row) => {
                     return (
                       <TableRow
-                        className="pointer"
                         hover
                         role="checkbox"
                         tabIndex={-1}
                         key={row.code}
-                        onClick={() => {
-                          router.push("/particularDiagnosis");
-                        }}
                       >
                         {columns.map((column) => {
                           const value = row[column.id];

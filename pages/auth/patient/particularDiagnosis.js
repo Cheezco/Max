@@ -1,5 +1,5 @@
 import * as React from "react"; // BE ŠITO NEVEIKIA KODAS
-import Layout from "../components/layout/main/Layout";
+import Layout from "../../../components/layout/main/Layout";
 import {
   Box,
   TextField,
@@ -18,7 +18,7 @@ import {
   TableRow,
 } from "@mui/material";
 
-import styles from "../styles/pages/particularDiagnosis/particularDiagnsis.module.css";
+import styles from "../../../styles/pages/particularDiagnosis/particularDiagnsis.module.css";
 
 const bull = (
   <Box
