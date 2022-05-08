@@ -7,9 +7,6 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    console.log(window);
-    console.log(status);
-    console.log(session);
     if (typeof window !== "undefined" && status === "unauthenticated") {
       router.push("/loginOrRegister");
     }
