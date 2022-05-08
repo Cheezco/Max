@@ -50,7 +50,7 @@ export default NextAuth({
           accessToken: user.token,
           username: user.username,
           userId: user.id,
-          role: "admin",
+          role: user.role.toLowerCase(),
         };
       }
 
