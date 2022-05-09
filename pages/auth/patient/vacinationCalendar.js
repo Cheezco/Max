@@ -9,9 +9,12 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import Layout from "../../../components/layout/main/layout";
 import styles from "../../../styles/pages/vacinationCalendarPage/vacinationCalendar.module.css";
+import { getToken } from "next-auth/jwt";
+import https from "https";
 
 const mockVacinations = [
   createData("vacination1", "2020-01-10"),
@@ -30,7 +33,7 @@ function createData(name, date) {
   return { name, date };
 }
 
-export default function VacinationCalendar() {
+export default function VacinationCalendar({ vaccinations }) {
   const [page, setPage] = useState(0);
   const itemsPerPage = 7;
 
@@ -49,13 +52,13 @@ export default function VacinationCalendar() {
         </Typography>
         <Paper variant="outlined" className={styles.vacinationTableContainer}>
           <VacinationTable
-            vacinations={mockVacinations}
+            vaccinations={vaccinations}
             page={page}
             itemsPerPage={itemsPerPage}
           />
           <TablePagination
             component="div"
-            count={mockVacinations.length}
+            count={vaccinations.length}
             page={page}
             rowsPerPage={itemsPerPage}
             rowsPerPageOptions={[]}
@@ -67,13 +70,13 @@ export default function VacinationCalendar() {
   );
 }
 
-function VacinationTable({ vacinations, page, itemsPerPage }) {
+function VacinationTable({ vaccinations, page, itemsPerPage }) {
   return (
     <TableContainer>
       <Table>
         <VacinationTableHead />
         <VacinationTableBody
-          vacinations={vacinations}
+          vaccinations={vaccinations}
           page={page}
           itemsPerPage={itemsPerPage}
         />
@@ -97,23 +100,68 @@ function VacinationTableHead() {
   );
 }
 
-function VacinationTableBody({ vacinations, page, itemsPerPage }) {
+function VacinationTableBody({ vaccinations, page, itemsPerPage }) {
+  const router = useRouter();
+
   return (
     <TableBody>
-      {vacinations &&
-        vacinations
+      {vaccinations &&
+        vaccinations
           .sort((a, b) => {
             return new Date(b.date) - new Date(a.date);
           })
           .slice(page * itemsPerPage, (page + 1) * itemsPerPage)
-          .map((vacination, index) => (
-            <TableRow key={index}>
+          .map((vaccination, index) => (
+            <TableRow
+              key={index}
+              onClick={() =>
+                router.push(
+                  "/auth/patient/particularVacine?id=" + vaccination.id
+                )
+              }
+            >
               <TableCell>
-                <Typography variant="body2">{vacination.name}</Typography>
+                <Typography variant="body2">{vaccination.name}</Typography>
               </TableCell>
-              <TableCell align="right">{vacination.date}</TableCell>
+              <TableCell align="right">
+                {new Date(vaccination.date).toDateString()}
+              </TableCell>
             </TableRow>
           ))}
     </TableBody>
   );
+}
+
+export async function getServerSideProps(context) {
+  try {
+    const secret = process.env.NEXTAUTH_SECRET;
+    const req = context.req;
+    const token = await getToken({ req, secret });
+    const agent = new https.Agent({ rejectUnauthorized: false });
+    const response = await fetch(
+      "https://localhost:5001/api/vaccinations/patient/" + token.userId,
+      {
+        agent,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token.accessToken,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      return { props: {} };
+    }
+
+    const vaccinations = await response.json();
+
+    return {
+      props: {
+        vaccinations,
+      },
+    };
+  } catch {
+    return { props: {} };
+  }
 }

@@ -10,6 +10,8 @@ import Paper from "@mui/material/Paper";
 import Layout from "../../../components/layout/main/Layout";
 import { Box, Divider } from "@mui/material";
 import styles from "../../../styles/pages/particularVacine/particularVacine.module.css";
+import { getToken } from "next-auth/jwt";
+import https from "https";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -44,7 +46,22 @@ const rows = [
   ),
 ];
 
-export default function ParticularVacine() {
+function transformRows(vaccinationData) {
+  return [
+    createData("Skiepo pavadinimas", vaccinationData.name),
+    createData(
+      "Pasiskiepijimo data: ",
+      new Date(vaccinationData.date).toDateString()
+    ),
+    createData(
+      "Galioja iki:",
+      new Date(vaccinationData.expiration).toDateString()
+    ),
+    createData("Aprašymas", vaccinationData.notes),
+  ];
+}
+
+export default function ParticularVacine({ vaccinationData }) {
   return (
     <Layout>
       <div className={styles.padding}>
@@ -56,7 +73,7 @@ export default function ParticularVacine() {
                 <TableRow></TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row) => (
+                {transformRows(vaccinationData).map((row) => (
                   <StyledTableRow key={row.name}>
                     <StyledTableCell
                       sx={{ minWidth: 169 }}
@@ -77,4 +94,39 @@ export default function ParticularVacine() {
       </div>
     </Layout>
   );
+}
+
+export async function getServerSideProps(context) {
+  try {
+    const secret = process.env.NEXTAUTH_SECRET;
+    const req = context.req;
+    const { id } = context.query;
+    const token = await getToken({ req, secret });
+    const agent = new https.Agent({ rejectUnauthorized: false });
+    const response = await fetch(
+      "https://localhost:5001/api/vaccinations/" + id,
+      {
+        agent,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token.accessToken,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      return { props: {} };
+    }
+
+    const vaccinationData = await response.json();
+
+    return {
+      props: {
+        vaccinationData,
+      },
+    };
+  } catch {
+    return { props: {} };
+  }
 }
