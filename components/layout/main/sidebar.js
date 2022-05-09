@@ -11,6 +11,7 @@ import styles from "../../../styles/layout/main/sidebar.module.css";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Logout, More } from "@mui/icons-material";
+import { signOut } from "next-auth/react";
 
 export default function Sidebar() {
   return (
@@ -52,7 +53,7 @@ function UserInformation() {
               {"Informacija"}
             </Link>
           </Button>
-          <IconButton>
+          <IconButton onClick={() => signOut()}>
             <Logout color="error" />
           </IconButton>
         </Box>

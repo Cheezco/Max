@@ -26,7 +26,7 @@ export default function Home() {
           break;
       }
     }
-  });
+  }, [status, router, session?.user?.role]);
 
   return <></>;
 }

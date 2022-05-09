@@ -47,11 +47,11 @@ export default function Registration() {
       LastName: lastname,
       Password: password,
       Hospital: hospital,
-      Doctor: doctor,
+      DoctorId: doctor === "" ? "0" : doctor,
       Email: email,
       PersonalCode: id,
     };
-    const response = await fetch("http://localhost:5000/api/register", {
+    const response = await fetch("http://localhost:5000/api/register/patient", {
       method: "POST",
       body: JSON.stringify(obj),
       headers: {
