@@ -13,7 +13,7 @@ export default function Footer() {
       </Box>
       <Box className={styles.buttonContainer}>
         <NavigationButton href="/privacy" text="Privatumo politika" />
-        <NavigationButton href="/" text="Pagalba" />
+        <NavigationButton href="/help" text="Pagalba" />
         <NavigationButton href="/information" text="Kontaktai" />
       </Box>
     </Paper>

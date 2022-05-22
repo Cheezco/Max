@@ -237,18 +237,16 @@ export default function Home() {
           </Box>
 
           <List>
-            <ListItem>Registracija</ListItem>
-            <ListItem>Tyrimai</ListItem>
-            <ListItem>Siuntimai</ListItem>
-            <ListItem>Receptai</ListItem>
             <ListItem>
-              <a
-                href="https://miro.com/app/board/uXjVOCnESr8=/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Nuoroda į wireframe
-              </a>
+              <Button variant="contained" color="success">
+                <a
+                  href="https://miro.com/app/board/uXjVOCnESr8=/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Nuoroda į svetainės "wireframe"
+                </a>
+              </Button>
             </ListItem>
           </List>
         </Typography>

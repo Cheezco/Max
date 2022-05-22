@@ -49,7 +49,7 @@ function UserInformation() {
         <Typography variant="caption">Gydytojas: Vardas Pavardė</Typography>
         <Box>
           <Button variant="outlined">
-            <Link href="/personalInformation" underline="hover">
+            <Link href="/auth/patient/personalInformation" underline="hover">
               {"Informacija"}
             </Link>
           </Button>
@@ -77,6 +77,7 @@ function Links() {
           text="Skiepų kalendorius"
         />
         <Divider />
+        <CustomLink href="/auth/patient/visits" text="Vizitai" />
       </Box>
     </Paper>
   );
