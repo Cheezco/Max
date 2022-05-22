@@ -13,11 +13,11 @@ import {
   TableRow,
 } from "@mui/material";
 import styles from "../../../styles/pages/certificatePage/certificate.module.css";
-
 import * as React from "react";
-
 import { styled } from "@mui/system";
 import TablePaginationUnstyled from "@mui/base/TablePaginationUnstyled";
+import { getToken } from "next-auth/jwt";
+import https from "https";
 
 const columns = [
   { id: "diagnosis_Name", label: "diagnosis_Name", minWidth: 170 },
@@ -36,25 +36,6 @@ const rows = [
   createData("Diagnozė1", "2022-02-1"),
   createData("Diagnozė2", "2022-02-2"),
   createData("Diagnozė3", "2022-02-1"),
-  createData("Diagnozė1", "2022-02-3"),
-  createData("Diagnozė23", "2022-02-5"),
-  createData("Diagnozė1", "2022-02-6"),
-  createData("Diagnozė2", "2022-02-15"),
-  createData("Diagnozė2", "2022-02-9"),
-  createData("Diagnozė2", "2022-02-6"),
-  createData("Diagnozė3", "2022-02-3"),
-  createData("Diagnozė3", "2022-02-25"),
-  createData("Diagnozė3", "2022-02-22"),
-  createData("Diagnozė3", "2022-02-24"),
-  createData("Diagnozė1", "2022-02-5"),
-  createData("Diagnozė2", "2022-02-1"),
-  createData("Diagnozė3", "2022-02-2"),
-  createData("Diagnozė1", "2022-02-02"),
-  createData("Diagnozė2", "2022-02-02"),
-  createData("Diagnozė3", "2022-02-02"),
-  createData("Diagnozė1", "2022-02-02"),
-  createData("Diagnozė2", "2022-02-02"),
-  createData("Diagnozė3", "2022-02-02"),
 ];
 
 export default function Diagnosis() {
@@ -133,4 +114,38 @@ export default function Diagnosis() {
       </Box>
     </Layout>
   );
+}
+
+export async function getServerSideProps(context) {
+  try {
+    const secret = process.env.NEXTAUTH_SECRET;
+    const req = context.req;
+    const token = await getToken({ req, secret });
+    const agent = new https.Agent({ rejectUnauthorized: false });
+    const response = await fetch(
+      "https://localhost:5001/api/diagnosis/patient/" + token.userId,
+      {
+        agent,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token.accessToken,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      return { props: {} };
+    }
+
+    const vaccinations = await response.json();
+
+    return {
+      props: {
+        vaccinations,
+      },
+    };
+  } catch {
+    return { props: {} };
+  }
 }
