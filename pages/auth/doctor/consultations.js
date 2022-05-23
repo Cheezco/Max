@@ -1,128 +1,98 @@
+import * as React from "react";
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 import Layout from "../../../components/layout/main/Layout";
-import { useRouter } from "next/router";
-import {
-  Box,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
-} from "@mui/material";
-import styles from "../../../styles/pages/certificatePage/certificate.module.css";
-import { useState } from "react";
+import { Box, Button } from "@mui/material";
+import styles from "../../../styles/pages/consultationsDoctorPage/consultations.module.css";
 
-const columns = [
-  { id: "sending_Name", label: "sending_Name", minWidth: 170 },
-  { id: "issue_date", label: "Issue_Date", minWidth: 100 },
-];
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
 
-function createData(sending_Name, issue_date) {
-  return { sending_Name, issue_date };
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
+
+function createData(Date, patient, Text) {
+  return { Date, patient, Text };
 }
 
 const rows = [
-  createData("Siuntimas", "2022-02-02"),
-  createData("Siuntimas1", "2022-02-02"),
-  createData("Siuntimas2", "2022-02-04"),
-  createData("Siuntimas3", "2022-02-05"),
-  createData("Siuntimas1", "2022-02-1"),
-  createData("Siuntimas2", "2022-02-2"),
-  createData("Siuntimas3", "2022-02-1"),
-  createData("Siuntimas1", "2022-02-3"),
-  createData("Siuntimas23", "2022-02-5"),
-  createData("Siuntimas1", "2022-02-6"),
-  createData("Siuntimas2", "2022-02-15"),
-  createData("Siuntimas2", "2022-02-9"),
-  createData("Siuntimas2", "2022-02-6"),
-  createData("Siuntimas3", "2022-02-3"),
-  createData("Siuntimas3", "2022-02-25"),
-  createData("Siuntimas3", "2022-02-22"),
-  createData("Siuntimas3", "2022-02-24"),
-  createData("Siuntimas1", "2022-02-5"),
-  createData("Siuntimas2", "2022-02-1"),
-  createData("Siuntimas3", "2022-02-2"),
-  createData("Siuntimas1", "2022-02-02"),
-  createData("Siuntimas2", "2022-02-02"),
-  createData("Siuntimas3", "2022-02-02"),
-  createData("Siuntimas1", "2022-02-02"),
-  createData("Siuntimas2", "2022-02-02"),
-  createData("Siuntimas3", "2022-02-02"),
+  createData("0000-00-00", "Vardas pavarde", "Priežastis"),
+  createData("0000-00-00", "Vardas pavarde", "Priežastis"),
+  createData("0000-00-00", "Vardas pavarde", "Priežastis"),
+  createData("0000-00-00", "Vardas pavarde", "Priežastis"),
+  createData("0000-00-00", "Vardas pavarde", "Priežastis"),
+  createData("0000-00-00", "Vardas pavarde", "Priežastis"),
+  createData("0000-00-00", "Vardas pavarde", "Priežastis"),
+  createData("0000-00-00", "Vardas pavarde", "Priežastis"),
 ];
 
 export default function Consultations() {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-
   return (
     <Layout>
-      <Box className={styles.colors}>
-        <h1>Siuntimai</h1>
-        <p>
-          Šiame puslapyje pateikiama informacija apie visus klientui
-          priklausančius siuntimus
-        </p>
-      </Box>
-      <Box className={styles.table_center}>
-        <Paper sx={{ width: "70%" }}>
-          <TableContainer sx={{ maxHeight: 440 }}>
-            <Table stickyHeader aria-label="sticky table">
+      <div className={styles.padding}>
+        <Box className={styles.container}>
+          <p className={styles.bigText}>Vizitai</p>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 700 }} aria-label="customized table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Pavadinimas</TableCell>
-                  <TableCell>Išdavimo data</TableCell>
+                  <StyledTableCell>Data</StyledTableCell>
+                  <StyledTableCell>Pacientas</StyledTableCell>
+                  <StyledTableCell>Priežastis</StyledTableCell>
+                  <StyledTableCell></StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => {
-                    return (
-                      <TableRow
-                        hover
-                        role="checkbox"
-                        tabIndex={-1}
-                        key={row.code}
-                      >
-                        {columns.map((column) => {
-                          const value = row[column.id];
-                          return (
-                            <TableCell key={column.id} align={column.align}>
-                              {column.format && typeof value === "number"
-                                ? column.format(value)
-                                : value}
-                            </TableCell>
-                          );
-                        })}
-                      </TableRow>
-                    );
-                  })}
+                {rows.map((row) => (
+                  <StyledTableRow key={row.Date}>
+                    <StyledTableCell
+                      sx={{ minWidth: 169 }}
+                      component="th"
+                      scope="row"
+                    >
+                      {row.Date}
+                    </StyledTableCell>
+                    <StyledTableCell component="th" scope="row">
+                      {row.patient}
+                    </StyledTableCell>
+                    <StyledTableCell
+                      sx={{ minWidth: 400 }}
+                      component="th"
+                      scope="row"
+                    >
+                      {row.Text}
+                    </StyledTableCell>
+                    <StyledTableCell component="th" scope="row">
+                      <Button variant="contained" color="error">
+                        Atšaukti vizitą
+                      </Button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
               </TableBody>
             </Table>
           </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25, 100]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-            labelRowsPerPage={"Eilučių skaičius:"}
-          />
-        </Paper>
-      </Box>
+        </Box>
+      </div>
     </Layout>
   );
 }
