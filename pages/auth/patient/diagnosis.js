@@ -19,9 +19,14 @@ import TablePaginationUnstyled from "@mui/base/TablePaginationUnstyled";
 import { getToken } from "next-auth/jwt";
 import https from "https";
 
+// const columns = [
+//   { id: "diagnosis_Name", label: "diagnosis_Name", minWidth: 170 },
+//   { id: "issueDate", label: "issueDate", minWidth: 100 },
+// ];
+
 const columns = [
-  { id: "diagnosis_Name", label: "diagnosis_Name", minWidth: 170 },
-  { id: "issueDate", label: "issueDate", minWidth: 100 },
+  { id: "name", label: "diagnosis_Name", minWidth: 170 },
+  { id: "date", label: "issueDate", minWidth: 100 },
 ];
 
 function createData(diagnosis_Name, issueDate) {
@@ -38,7 +43,7 @@ const rows = [
   createData("Diagnozė3", "2022-02-1"),
 ];
 
-export default function Diagnosis() {
+export default function Diagnosis({ diagnoses }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const router = useRouter();
@@ -50,6 +55,7 @@ export default function Diagnosis() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
   return (
     <Layout>
       <Box className={styles.colors}>
@@ -70,40 +76,43 @@ export default function Diagnosis() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => {
-                    return (
-                      <TableRow
-                        className="pointer"
-                        hover
-                        role="checkbox"
-                        tabIndex={-1}
-                        key={row.code}
-                        onClick={() => {
-                          router.push("/auth/patient/particularDiagnosis");
-                        }}
-                      >
-                        {columns.map((column) => {
-                          const value = row[column.id];
-                          return (
-                            <TableCell key={column.id} align={column.align}>
-                              {column.format && typeof value === "number"
-                                ? column.format(value)
-                                : value}
-                            </TableCell>
-                          );
-                        })}
-                      </TableRow>
-                    );
-                  })}
+                {diagnoses &&
+                  diagnoses
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row) => {
+                      return (
+                        <TableRow
+                          className="pointer"
+                          hover
+                          role="checkbox"
+                          tabIndex={-1}
+                          key={row.id}
+                          onClick={() => {
+                            router.push(
+                              "/auth/patient/particularDiagnosis?id=" + row.id
+                            );
+                          }}
+                        >
+                          {columns.map((column) => {
+                            const value = row[column.id];
+                            return (
+                              <TableCell key={column.id} align={column.align}>
+                                {column.id === "name"
+                                  ? value
+                                  : new Date(value).toLocaleDateString()}
+                              </TableCell>
+                            );
+                          })}
+                        </TableRow>
+                      );
+                    })}
               </TableBody>
             </Table>
           </TableContainer>
           <TablePagination
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
-            count={rows.length}
+            count={diagnoses ? diagnoses?.length : 0}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
@@ -123,7 +132,7 @@ export async function getServerSideProps(context) {
     const token = await getToken({ req, secret });
     const agent = new https.Agent({ rejectUnauthorized: false });
     const response = await fetch(
-      "https://localhost:5001/api/diagnosis/patient/" + token.userId,
+      "https://localhost:5001/api/diagnoses/patient/" + token.userId,
       {
         agent,
         method: "GET",
@@ -138,11 +147,11 @@ export async function getServerSideProps(context) {
       return { props: {} };
     }
 
-    const vaccinations = await response.json();
+    const diagnoses = await response.json();
 
     return {
       props: {
-        vaccinations,
+        diagnoses,
       },
     };
   } catch {
