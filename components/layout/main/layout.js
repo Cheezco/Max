@@ -1,20 +1,16 @@
-import { Box } from "@mui/material";
-import styles from "../../../styles/layout/main/layout.module.css";
-import Sidebar from "./sidebar";
-import Footer from "./footer";
+import { useSession } from "next-auth/react";
+import LayoutDoctor from "../mainDoctor/layout";
+import LayoutPatient from "../mainPatient/layout";
 
 export default function Layout({ children }) {
-  return (
-    <Box className={styles.container}>
-      <Box className={styles.innerContainer}>
-        <Box className={styles.sidebarContainer}>
-          <Sidebar />
-        </Box>
-        <Box className={styles.mainContentContainer}>{children}</Box>
-      </Box>
-      <Box className={styles.footerContainer}>
-        <Footer />
-      </Box>
-    </Box>
-  );
+  const { data: session } = useSession();
+
+  switch (session?.user?.role) {
+    case "patient":
+      return <LayoutPatient>{children}</LayoutPatient>;
+    case "doctor":
+      return <LayoutDoctor>{children}</LayoutDoctor>;
+    default:
+      return <></>;
+  }
 }
