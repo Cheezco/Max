@@ -17,8 +17,10 @@ import {
   TablePagination,
   TableRow,
 } from "@mui/material";
-
+import { getToken } from "next-auth/jwt";
+import https from "https";
 import styles from "../../../styles/pages/particularDiagnosis/particularDiagnsis.module.css";
+import { useRouter } from "next/router";
 
 const bull = (
   <Box
@@ -27,8 +29,8 @@ const bull = (
   ></Box>
 );
 
-const card = (
-  <React.Fragment>
+function DiagnosisCardContent({ diagnosis }) {
+  return (
     <CardContent>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
@@ -38,7 +40,7 @@ const card = (
                 <Typography>Diagnozė</Typography>
               </TableCell>
               <TableCell>
-                <Typography>"diagnozės pavadinimas"</Typography>
+                <Typography>{diagnosis.name}</Typography>
               </TableCell>
             </TableRow>
             <TableRow>
@@ -46,42 +48,70 @@ const card = (
                 <Typography>Nustatyta(data):</Typography>
               </TableCell>
               <TableCell>
-                <Typography>0000-00-00</Typography>
+                <Typography>
+                  {new Date(diagnosis.date).toLocaleDateString("lt-LT")}
+                </Typography>
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Aprašymas</TableCell>
-              <TableCell style={{ width: "70%" }}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets
-                containing Lorem Ipsum passages, and more recently with desktop
-                publishing software like Aldus PageMaker including versions of
-                Lorem Ipsum.
-              </TableCell>
+              <TableCell style={{ width: "70%" }}>{diagnosis.notes}</TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
     </CardContent>
-  </React.Fragment>
-);
+  );
+}
+export default function ParticularDiagnosis({ diagnosis }) {
+  const router = useRouter();
 
-export default function ParticularDiagnosis() {
+  React.useEffect(() => {
+    if (!diagnosis) {
+      router.push("/auth/patient/diagnosis");
+    }
+  });
+
   return (
     <Layout>
-      <Typography>
-        <h2 className={styles.alignCenter}>Išsami informacija apie diagnozę</h2>
-      </Typography>
+      <h2 className={styles.alignCenter}>Išsami informacija apie diagnozę</h2>
       <Box className={styles.certificate_center}>
-        <Card sx={{ width: "70%" }} variant="outlined">
-          {card}
+        <Card sx={{ width: "70%" }} variant="outlined" diagnosis={diagnosis}>
+          <DiagnosisCardContent diagnosis={diagnosis} />
         </Card>
       </Box>
     </Layout>
   );
+}
+
+export async function getServerSideProps(context) {
+  try {
+    const secret = process.env.NEXTAUTH_SECRET;
+    const req = context.req;
+    const token = await getToken({ req, secret });
+    const { id } = context.query;
+    const agent = new https.Agent({ rejectUnauthorized: false });
+    const response = await fetch("https://localhost:5001/api/diagnoses/" + id, {
+      agent,
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token.accessToken,
+      },
+    });
+
+    if (!response.ok) {
+      return { props: {} };
+    }
+
+    const diagnosis = await response.json();
+
+    return {
+      props: {
+        diagnosis,
+      },
+    };
+  } catch {
+    return { props: {} };
+  }
 }
